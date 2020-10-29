@@ -126,7 +126,7 @@ const goodbyeMessage = function() {
 
 // This function will be if the player wants to check their stats
 const checkStats = function() {
-  textArea.textContent = `Your Health is at ${health}, your Stamina is at ${stamina}, and your Mana is ${mana}`;
+  textArea.textContent = `Your Health is at ${health}, your Stamina is at ${stamina}, and your Mana is at ${mana}`;
   optionOne.textContent = "";
   optionTwo.textContent = "";
   setTimeout(() => {  choiceArray[1]() }, 5000);
@@ -152,8 +152,9 @@ const breakScene = function(object = "log", nextScene) {
 
 
 const rockAttack = function() {
+  resetValues();
   // Dialogue
-  console.log("You decide to settle down and not jump at every noise. Unfortunately, the rock you are sitting under seems tired of your precense. A giant claw reaches around and... You are never heard from again.");
+  textArea.textContent = "You decide to settle down and not jump at every noise. Unfortunately, the rock you are sitting under seems tired of your precense. A giant claw reaches around and... You are never heard from again.";
   endScene();
 };
 
@@ -164,7 +165,7 @@ const meetWizard = function() {
   dialogueNumber = 0;
 
   // Dialogue
-  textArea.textContent = "It turns out, it was an old wizard, carving his wizard staff. The wizard guffaws at your presence.  I can sense great magic power from you, would you be my apprentice?";
+  textArea.textContent = "It turns out, it was an old wizard, carving his wizard staff. The wizard guffaws at your presence. \"I can sense great magic power from you, would you be my apprentice?\"";
   optionOne.textContent = "I would love to!";
   optionTwo.textContent = "Ah, no thanks";
 
@@ -378,7 +379,7 @@ const start = function() {
   // Setting the Scene
   textArea.textContent = "You are walking through a verdant green forest, and the sun suddenly shines straight into your eyes. You soon recover, but something feels different. You keep on walking.";
   dialogueArray.push("...............");
-  dialogueArray.push("You soon come across a fork in the path. Which path, -left- or -right-, do you pick?");
+  dialogueArray.push("You soon come across a fork in the path. Which path, left or right, do you pick?");
 
   // Ask for user input on path
 
