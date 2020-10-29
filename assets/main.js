@@ -3,14 +3,14 @@
  * DOM Adventure Game
  */
 
- // Create variables for player's health, stamina, and mana (the player's "stats")
- let health = 100;
- let stamina = 100;
- let mana = 0;
- // Create a variable for choice, so it does not need to be made in each function
- let choiceArray = [];
- let dialogueArray = [];
- let dialogueNumber = 0;
+// Create variables for player's health, stamina, and mana (the player's "stats")
+let health = 100;
+let stamina = 100;
+let mana = 0;
+// Create a variable for choice, so it does not need to be made in each function
+let choiceArray = [];
+let dialogueArray = [];
+let dialogueNumber = 0;
 
 // Create a hint button, that when clicked, displays a hint to press space bar
 let hintButton = document.createElement('div');
@@ -26,7 +26,6 @@ let textArea = document.createElement('div');
 textArea.className = 'white-space';
 
 // Create two div buttons to click to go to next option, and create a flex wrapper for them both
-
 let wrapper = document.createElement('div');
 wrapper.className = 'wrapper';
 
@@ -36,21 +35,19 @@ optionOne.className = 'options';
 optionTwo.className = 'options';
 
 //Append those buttons to the wrapper
-
 wrapper.appendChild(optionOne);
 wrapper.appendChild(optionTwo);
 
 document.querySelector('#game').appendChild(hintWrapper);
 document.querySelector('#game').appendChild(textArea);
 document.querySelector('#game').appendChild(wrapper);
-
 // End of button creation
 
-// Create selector for textArea textContent, optionOne and optionTwo
-let text = document.querySelector('.white-space p');
+// Create selectors for optionOne and optionTwo
 let optionOneText = document.querySelector('.wrapper:first-child');
 let optionTwoText = document.querySelector('.wrapper:last-child');
 
+//This function runs when the hintButton is clicked
 const addHintBox = function() {
   let hintBox = document.createElement('div');
   hintBox.className = 'hint-box';
@@ -88,7 +85,7 @@ window.addEventListener('keydown', event => {
   }
 });
 
-
+// This function is used to reset dialogue, and choice arrays, along with establishing red bg color at start of scenes for option buttons
 const resetValues = function() {
   //Reset button colors back to red
   optionOne.style.backgroundColor = "#ce6262";
@@ -102,8 +99,7 @@ const resetValues = function() {
 
 // Show this message when the player dies
 const endScene = function() {
-  //Reset choiceArray, dialogueArray, and dialogueNumber
-  choiceArray.length = 0;
+  resetValues();
 
   //Reset stats after game is over
   health = 100;
@@ -123,14 +119,14 @@ const goodbyeMessage = function() {
   resetValues();
 
   textArea.textContent = "Thanks for playing!";
-  optionOne.textArea = " ";
-  optionTwo.textArea = " ";
+  optionOne.textContent = "";
+  optionTwo.textContent = "";
 };
 
 
 // This function will be if the player wants to check their stats
 const checkStats = function() {
-  textArea.textContent = ` Health is ${health}, Stamina is ${stamina}, Mana is ${mana}`;
+  textArea.textContent = `Your Health is at ${health}, your Stamina is at ${stamina}, and your Mana is ${mana}`;
   optionOne.textContent = "";
   optionTwo.textContent = "";
   setTimeout(() => {  choiceArray[1]() }, 5000);
