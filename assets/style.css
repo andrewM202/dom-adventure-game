@@ -21,3 +21,24 @@ main {
   font-size: 2rem;
 }
 
+.white-space {
+  width: 50vw;
+  height: 30vw;
+  background-color: white;
+}
+
+.options {
+  height: 100%;
+  width: 50%;
+  background-color: white;
+  border: 3px solid black;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 50vw;
+  height: 200px;
+}
+
+/* textArea */
