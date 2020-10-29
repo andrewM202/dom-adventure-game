@@ -159,7 +159,9 @@ const rockAttack = function() {
 
 
 const meetWizard = function() {
-  resetValues();
+  choiceArray.length = 0;
+  dialogueArray.length = 0;
+  dialogueNumber = 0;
 
   // Dialogue
   textArea.textContent = "It turns out, it was an old wizard, carving his wizard staff. The wizard guffaws at your presence.  I can sense great magic power from you, would you be my apprentice?";
@@ -193,7 +195,6 @@ const meetWizardNo = function() {
 
   // Trigger end scene
   endScene();
-
 };
 
 
@@ -228,7 +229,6 @@ const findGoldBagYes = function() {
   dialogueArray.push("Your journey yet continues...");
     // Send player to city scene, with good argument
     findCityGood();
-
 };
 
 
@@ -239,7 +239,6 @@ const findGoldBagNo = function() {
   textArea.textcontent = "You wander on your path, and spot a bandit group hastling a merchant... Unfortunately you have nothing to stop their heinous actions, and you skirt around them. Your journey yet continues...";
   // Send player to city scene, with bad argument
   findCityBad();
-
 };
 
 
@@ -250,7 +249,7 @@ const goblinAttack = function() {
   textArea.textContent = "You walk for what feels like an hour and are feeling a bit tired.";
   dialogueArray.push("-5 Stamina");
   dialogueArray.push("You spot something odd. A small green object is running at you? You notice it has to be a goblin!");
-  dialogueArray.push("Do you -run- at the goblin to try to scare it away, or -run away- yourself?");
+  dialogueArray.push("Do you run at the goblin to try to scare it away, or run away yourself?");
 
   choiceArray.push(runAt);
   choiceArray.push(runAway);
@@ -261,7 +260,6 @@ const goblinAttack = function() {
   //Update the options' text
   optionOne.textContent = "Run at it";
   optionTwo.textContent = "Run away";
-
 };
 
 
@@ -279,14 +277,19 @@ const runAt = function() {
     health -= 30;
     stamina -= 25;
 
-    // Call for a break scene
-    breakScene("rock", tickingSound);
 
+    optionOne.textContent = "";
+    optionTwo.textContent = "";
+
+    // Call a break scene after a timeout
+    setTimeout(() => { breakScene("rock", tickingSound) }, 7500);
 };
 
 
 const tickingSound = function() {
-  resetValues();
+  choiceArray.length = 0;
+  dialogueArray.length = 0;
+  dialogueNumber = 0;
 
   // Continue story with a choice
   textArea.textContent = "You suddenly hear a ticking sound. Investigate?";
@@ -306,11 +309,12 @@ const runAway = function() {
   // Dialogue
   textArea.textContent = "The goblin quickly looses interest at a prey that won't fight back. You lose sight of the goblin quickly.";
   dialogueArray.push("-5 Stamina");
+  optionOne.textContent = "";
+  optionTwo.textContent = "";
 
-  // Call a break scene
-  breakScene("rock", findGoldBagNo);
+  // Call a break scene after a timeout
+  setTimeout(() => { breakScene("rock", findGoldBagNo) }, 7500);
   // Send them to the goldbag scene, but with no gold
-
 };
 
 
@@ -325,8 +329,7 @@ const rustySword = function() {
   optionOne.textContent = "Take it";
   optionTwo.textContent = "Leave it";
   choiceArray.push(takeIt);
-  choiceArray.push(leaveIt);
-
+  choiceArray.push(leaveIt)
 };
 
 
@@ -340,9 +343,11 @@ const takeIt = function() {
   dialogueArray.push("Stamina - 10");
   stamina -= 10;
 
-  // Start a breakScene
-  breakScene("Tree branch", findGoldBagYes);
-  // Send to the findGoldBag scenario, with yes argument
+  optionOne.textContent = "";
+  optionTwo.textContent = "";
+
+  // Call a break scene after a timeout, send to findGoldBagYes
+  setTimeout(() => { breakScene("Tree branch", findGoldBagYes) }, 7500);
 };
 
 
@@ -357,9 +362,12 @@ const leaveIt = function() {
   dialogueArray.push("Stamina - 10");
   stamina -= 10;
 
-  // Start a break scene
-  breakScene("Invisible chair", findGoldBagNo);
-  // Send to the findGoldBag scenario, with no argument
+  optionOne.textContent = "";
+  optionTwo.textContent = "";
+
+  // Call a break scene after a timeout, send to findGoldBagNo
+  setTimeout(() => { breakScene("Invisible chair", findGoldBagNo) }, 7500);
+
 };
 
 
