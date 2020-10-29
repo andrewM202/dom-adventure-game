@@ -15,7 +15,7 @@ let dialogueNumber = 0;
 // Create a hint button, that when clicked, displays a hint to press space bar
 let hintButton = document.createElement('div');
 hintButton.className = 'hint-button'
-hintButton.textContent = "Click for hint";
+hintButton.textContent = "Hover over here for hint!";
 //Wrap that hintButton in a hint-wrapper, also to hold the hint-box
 let hintWrapper = document.createElement('div');
 hintWrapper.className = "hint-wrapper";
