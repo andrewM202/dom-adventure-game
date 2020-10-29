@@ -12,11 +12,20 @@
  let dialogueArray = [];
  let dialogueNumber = 0;
 
+// Create a hint button, that when clicked, displays a hint to press space bar
+let hintButton = document.createElement('div');
+hintButton.className = 'hint-button'
+hintButton.textContent = "Click for hint";
+//Wrap that hintButton in a hint-wrapper, also to hold the hint-box
+let hintWrapper = document.createElement('div');
+hintWrapper.className = "hint-wrapper";
+hintWrapper.appendChild(hintButton);
+
 // Create a space for a white space where text will appear
 let textArea = document.createElement('div');
 textArea.className = 'white-space';
 
-// Create two div buttons to click to go to next option
+// Create two div buttons to click to go to next option, and create a flex wrapper for them both
 
 let wrapper = document.createElement('div');
 wrapper.className = 'wrapper';
@@ -26,9 +35,12 @@ let optionTwo = document.createElement('div');
 optionOne.className = 'options';
 optionTwo.className = 'options';
 
+//Append those buttons to the wrapper
+
 wrapper.appendChild(optionOne);
 wrapper.appendChild(optionTwo);
 
+document.querySelector('#game').appendChild(hintWrapper);
 document.querySelector('#game').appendChild(textArea);
 document.querySelector('#game').appendChild(wrapper);
 
@@ -38,6 +50,17 @@ document.querySelector('#game').appendChild(wrapper);
 let text = document.querySelector('.white-space p');
 let optionOneText = document.querySelector('.wrapper:first-child');
 let optionTwoText = document.querySelector('.wrapper:last-child');
+
+const addHintBox = function() {
+  let hintBox = document.createElement('div');
+  hintBox.className = 'hint-box';
+  hintBox.textContent = "Press space-bar to cycle through dialogue until option boxes below are green!"
+  hintWrapper.appendChild(hintBox);
+  hintButton.removeEventListener("click", addHintBox);
+}
+
+//When the hint button is clicked, add a new div
+hintButton.addEventListener("click", addHintBox);
 
 // Create event listeners to go to next scene depending on which button is depressed
 optionOne.addEventListener('click', () => {
@@ -88,16 +111,17 @@ const endScene = function() {
   mana = 0;
 
   // Print out the end message
-  dialogueArray.push("The end. Play Again? -yes- or -no-");
+  dialogueArray.push("The end. Play Again?");
   // If user says yes, restart. Otherwise do nothing
   optionOne.textContent = "Yes!";
   optionTwo.textContent = "No...";
   choiceArray.push(start, goodbyeMessage);
-
 };
 
 
 const goodbyeMessage = function() {
+  resetValues();
+
   textArea.textContent = "Thanks for playing!";
   optionOne.textArea = " ";
   optionTwo.textArea = " ";
@@ -350,11 +374,8 @@ const start = function() {
   // Setting the Scene
   textArea.textContent = "You are walking through a verdant green forest, and the sun suddenly shines straight into your eyes. You soon recover, but something feels different. You keep on walking.";
   dialogueArray.push("...............");
-  console.log(dialogueArray.length);
-  console.log(dialogueNumber);
   dialogueArray.push("You soon come across a fork in the path. Which path, -left- or -right-, do you pick?");
-  console.log(dialogueArray.length);
-  console.log(dialogueNumber);
+
   // Ask for user input on path
 
   optionOne.textContent = 'Left';
