@@ -53,11 +53,11 @@ const addHintBox = function() {
   hintBox.className = 'hint-box';
   hintBox.textContent = "Press space-bar to cycle through dialogue until option boxes below are green!"
   hintWrapper.appendChild(hintBox);
-  hintButton.removeEventListener("click", addHintBox);
+  hintButton.removeEventListener("mouseenter", addHintBox);
 };
 
 //When the hint button is clicked, add a new div
-hintButton.addEventListener("click", addHintBox);
+hintButton.addEventListener("mouseenter", addHintBox);
 
 // Create event listeners to go to next scene depending on which button is depressed
 optionOne.addEventListener('click', () => {
