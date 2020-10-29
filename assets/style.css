@@ -3,17 +3,16 @@
 }
 
 html {
-  font-size: 1.2em;
+  font-size: #;
 }
 
 body {
   align-items: center;
   background: #343434;
-  color: #fefefe;
+  color: black;
   display: flex;
   font-family: Helvetica, Arial, sans-serif;
   justify-content: center;
-  line-height: 140%;
   min-height: 100vh;
 }
 
@@ -25,6 +24,10 @@ main {
   width: 50vw;
   height: 30vw;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
 }
 
 .options {
@@ -32,6 +35,9 @@ main {
   width: 50%;
   background-color: white;
   border: 3px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .wrapper {
@@ -42,3 +48,6 @@ main {
 }
 
 /* textArea */
+/* dialogueNumber */
+/* optionOne and optionTwo */
+/* choiceArray and dialogueArray */

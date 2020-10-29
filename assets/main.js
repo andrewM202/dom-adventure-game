@@ -3,11 +3,20 @@
  * DOM Adventure Game
  */
 
-/* Create a space for a white space where text will appear */
+ // Create variables for player's health, stamina, and mana (the player's "stats")
+ let health = 100;
+ let stamina = 100;
+ let mana = 0;
+ // Create a variable for choice, so it does not need to be made in each function
+ let choiceArray = [];
+ let dialogueArray = [];
+ let dialogueNumber = 0;
+
+// Create a space for a white space where text will appear
 let textArea = document.createElement('div');
 textArea.className = 'white-space';
 
-/* Create two div buttons to click to go to next option */
+// Create two div buttons to click to go to next option
 
 let wrapper = document.createElement('div');
 wrapper.className = 'wrapper';
@@ -20,22 +29,38 @@ optionTwo.className = 'options';
 wrapper.appendChild(optionOne);
 wrapper.appendChild(optionTwo);
 
-
-
 document.querySelector('#game').appendChild(textArea);
 document.querySelector('#game').appendChild(wrapper);
 
-/* End of button creation */
+// End of button creation
+
+// Create selector for textArea textContent, optionOne and optionTwo
+let text = document.querySelector('.white-space p');
+let optionOneText = document.querySelector('.wrapper:first-child');
+let optionTwoText = document.querySelector('.wrapper:last-child');
+
+// Create function to go to next scene depending on which button is depressed
+optionOne.addEventListener('click', () => {
+  choiceArray[0]();
+});
+optionTwo.addEventListener('click', () => {
+  choiceArray[1]();
+});
 
 
 
-
-// Create variables for player's health, stamina, and mana (the player's "stats")
-let health = 100;
-let stamina = 100;
-let mana = 0;
-// Create a variable for choice, so it does not need to be made in each function
-let choice;
+// This will upaate the Dialogue if spacebar is pressed
+window.addEventListener('keydown', event => {
+  if(event.key == ' ') {
+    if(dialogueNumber == dialogueArray.length) {
+      dialogueNumber--;
+      textArea.textContent = dialogueArray[dialogueNumber];
+    } else {
+      textArea.textContent = dialogueArray[dialogueNumber];
+      dialogueNumber++;
+    }
+  }
+});
 
 
 
@@ -165,61 +190,63 @@ const findGoldBag = function(findGold) {
 // This scene is if the player goes left from start
 const goblinAttack = function() {
 
-  // Dialogue
-  console.log("\nYou walk for what feels like an hour and are feeling a bit tired.\n");
-  console.log("-5 Stamina");
+  choiceArray.pop();
+  choiceArray.pop();
+
+  textArea.textContent = "You walk for what feels like an hour and are feeling a bit tired.";
+  dialogueArray.push("-5 Stamina");
+  dialogueArray.push("You spot something odd. A small green object is running at you? You notice it has to be a goblin!");
+  dialogueArray.push("Do you -run- at the goblin to try to scare it away, or -run away- yourself?");
+
+  choiceArray.push(run);
+  choiceArray.push(runAway);
+
   // Take 5 stamina away
   stamina -= 5;
-  console.log("\nYou spot something odd. A small green object is running at you? You notice it has to be a goblin!");
 
-  // Ask the player for their choice
-  choice = prompt("Do you -run- at the goblin to try to scare it away, or -run away- yourself?\n");
+  //Update the options' text
+  optionOne.textContent = "run";
+  optionTwo.textContent = "run away";
 
-  // If the player runs at the goblin
-  if(choice === "run".toLowerCase()) {
-      // Dialogue
-      console.log("\nYou charge head first at the creature, while flailing your arms around!");
-      console.log("Unfortunately, the goblin is not intimidated.");
-      console.log("You take a swipe on the arm, and turn tail and run!\n");
-      console.log("-30 Health \n-25 Stamina");
-
-      // take some health and stamina off for getting hit and running
-      health -= 30;
-      stamina -= 25;
-
-      // Call for a break scene
-      breakScene("rock", "one");
-
-      // Continue story with a choice
-      console.log("\nYou suddenly hear a ticking sound. Investigate? -yes- or -no-");
-      choice = prompt("");
-      if(choice === "yes") {
-        return meetWizard();
-      } else {
-        return rockAttack();
-      }
-    // Branch for if player runs away from the goblin
-  } else if(choice === "run away".toLowerCase()) {
-    // Dialogue
-    console.log("\nThe goblin quickly looses interest at a prey that won't fight back. You lose sight of the goblin quickly.");
-    console.log("\n-5 Stamina");
-
-    // Call a break scene
-    breakScene("rock");
-
-    // Send them to the goldbag scene, but with no gold
-    return findGoldBag("no");
-
-  } else {
-    // Branch for if player does nothing
-    console.log("\nYou hesitate? Okay then... The goblin attacks, and you meet your doom.");
-
-    // Trigger end scene
-    return endScene();
-  }
 };
 
+// If the player runs at the goblin
+function run() {
+    // Dialogue
+    console.log("\nYou charge head first at the creature, while flailing your arms around!");
+    console.log("Unfortunately, the goblin is not intimidated.");
+    console.log("You take a swipe on the arm, and turn tail and run!\n");
+    console.log("-30 Health \n-25 Stamina");
 
+    // take some health and stamina off for getting hit and running
+    health -= 30;
+    stamina -= 25;
+
+    // Call for a break scene
+    breakScene("rock", "one");
+
+    // Continue story with a choice
+    console.log("\nYou suddenly hear a ticking sound. Investigate? -yes- or -no-");
+    choice = prompt("");
+    if(choice === "yes") {
+      return meetWizard();
+    } else {
+      return rockAttack();
+    }
+}
+
+// Branch for if player runs away from the goblin
+function runAway() {
+  // Dialogue
+  console.log("\nThe goblin quickly looses interest at a prey that won't fight back. You lose sight of the goblin quickly.");
+  console.log("\n-5 Stamina");
+
+  // Call a break scene
+  breakScene("rock");
+
+  // Send them to the goldbag scene, but with no gold
+  return findGoldBag("no")
+}
 
 // Scene for if the player goes right from start
 const rustySword = function() {
@@ -259,6 +286,10 @@ const rustySword = function() {
     // Trigger end scene
     return endScene();
   }
+
+  //Update the buttons for the new options
+  choiceArray.push(run);
+  choiceArray.push(runAway);
 };
 
 
@@ -267,22 +298,15 @@ const rustySword = function() {
 const start = function() {
 
   // Setting the Scene
-  console.log("You are walking through a verdant green forest, and the sun suddenly shines straight into your eyes.");
-  console.log("You soon recover, but something feels different. You keep on walking.");
-  console.log("\n.....\n.....\n.....\n");
-  console.log("You soon come across a fork in the path.");
+  textArea.textContent = "You are walking through a verdant green forest, and the sun suddenly shines straight into your eyes. You soon recover, but something feels different. You keep on walking. \n.....\n.....\n.....\n You soon come across a fork in the path. \nWhich path, -left- or -right-, do you pick?\n";
 
   // Ask for user input on path
-  choice = prompt("\nWhich path, -left- or -right-, do you pick?\n").toLowerCase();
+  optionOne.textContent = 'left';
+  optionTwo.textContent = 'right';
 
-  // Create branches for each choice
-  if (choice === "left") {
-    return goblinAttack();
-  } else if (choice === "right") {
-    return rustySword();
-  } else {
-    return console.log("You just sit and do nothing. The end.");
-  }
+  choiceArray.push(goblinAttack);
+  choiceArray.push(rustySword);
+
 };
 
 
