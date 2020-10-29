@@ -54,7 +54,7 @@ const addHintBox = function() {
   hintBox.textContent = "Press space-bar to cycle through dialogue until option boxes below are green!"
   hintWrapper.appendChild(hintBox);
   hintButton.removeEventListener("click", addHintBox);
-}
+};
 
 //When the hint button is clicked, add a new div
 hintButton.addEventListener("click", addHintBox);
@@ -368,7 +368,6 @@ const leaveIt = function() {
 
   // Call a break scene after a timeout, send to findGoldBagNo
   setTimeout(() => { breakScene("Invisible chair", findGoldBagNo) }, 7500);
-
 };
 
 
