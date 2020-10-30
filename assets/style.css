@@ -26,7 +26,8 @@ main {
 }
 
 .hint-button {
-  border: 3px solid black;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
   width: 30%;
   height: 100%;
   background-color: rgb(206, 98, 98);
@@ -37,8 +38,6 @@ main {
 }
 
 .hint-box {
-  border-top: 3px solid black;
-  border-right: 3px solid black;
   border-bottom: 3px solid black;
   width: 70%;
   height: 100%;

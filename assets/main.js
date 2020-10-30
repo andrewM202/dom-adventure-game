@@ -14,7 +14,7 @@ let dialogueNumber = 0;
 
 // Create a hint button, that when clicked, displays a hint to press space bar
 let hintButton = document.createElement('div');
-hintButton.className = 'hint-button'
+hintButton.className = 'hint-button';
 hintButton.textContent = "Hover over here for hint!";
 //Wrap that hintButton in a hint-wrapper, also to hold the hint-box
 let hintWrapper = document.createElement('div');
@@ -51,7 +51,7 @@ let optionTwoText = document.querySelector('.wrapper:last-child');
 const addHintBox = function() {
   let hintBox = document.createElement('div');
   hintBox.className = 'hint-box';
-  hintBox.textContent = "Press space-bar to cycle through dialogue until option boxes below are green!"
+  hintBox.textContent = "Press space-bar to cycle through dialogue until option boxes below are green!";
   hintWrapper.appendChild(hintBox);
   hintButton.removeEventListener("mouseenter", addHintBox);
 };
@@ -278,7 +278,6 @@ const runAt = function() {
     health -= 30;
     stamina -= 25;
 
-
     optionOne.textContent = "";
     optionTwo.textContent = "";
 
@@ -379,8 +378,6 @@ const start = function() {
   textArea.textContent = "You are walking through a verdant green forest, and the sun suddenly shines straight into your eyes. You soon recover, but something feels different. You keep on walking.";
   dialogueArray.push("...............");
   dialogueArray.push("You soon come across a fork in the path. Which path, left or right, do you pick?");
-
-  // Ask for user input on path
 
   optionOne.textContent = 'Left';
   optionTwo.textContent = 'Right';
