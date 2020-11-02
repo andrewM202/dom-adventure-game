@@ -69,7 +69,7 @@ optionTwo.addEventListener('click', () => {
 
 // These two styles are to set the default color for the option buttons
 optionOne.style.backgroundColor = "#ce6262";
-optionTwo.style.backgroundColor = "#ce6262";
+optionTwo.style.backgroundColor = "#ce6262"; // Red color
 
 // This will update the Dialogue if spacebar is pressed
 window.addEventListener('keydown', event => {
@@ -78,7 +78,7 @@ window.addEventListener('keydown', event => {
       textArea.textContent = dialogueArray[dialogueNumber];
       dialogueNumber++;
       if(dialogueNumber == dialogueArray.length) { //
-        optionOne.style.backgroundColor = "#b8de6f";
+        optionOne.style.backgroundColor = "#b8de6f"; // Green color
         optionTwo.style.backgroundColor = "#b8de6f";
       }
     }
@@ -88,7 +88,7 @@ window.addEventListener('keydown', event => {
 // This function is used to reset dialogue, and choice arrays, along with establishing red bg color at start of scenes for option buttons
 const resetValues = function() {
   //Reset button colors back to red
-  optionOne.style.backgroundColor = "#ce6262";
+  optionOne.style.backgroundColor = "#ce6262"; // Red color
   optionTwo.style.backgroundColor = "#ce6262";
   //Reset choiceArray, dialogueArray, and dialogueNumber in case game is restarted
   choiceArray.length = 0;
@@ -351,7 +351,7 @@ const takeIt = function() {
 };
 
 
-//This bracnh is if you leave the sword in the rustySword scene
+//This branch is if you leave the sword in the rustySword scene
 const leaveIt = function() {
   resetValues();
 
