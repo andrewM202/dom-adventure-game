@@ -77,7 +77,7 @@ window.addEventListener('keydown', event => {
     if(dialogueNumber !== dialogueArray.length) {
       textArea.textContent = dialogueArray[dialogueNumber];
       dialogueNumber++;
-      if(dialogueNumber == dialogueArray.length) { //
+      if(dialogueNumber == dialogueArray.length) { 
         optionOne.style.backgroundColor = "#b8de6f"; // Green color
         optionTwo.style.backgroundColor = "#b8de6f";
       }
