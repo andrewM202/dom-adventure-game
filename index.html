@@ -14,7 +14,8 @@
 
   <ul id="myList">
     <li>
-    
+    </li>
+
   <button onclick="myFunction1()" id="left">----Left----</button>
   <button onclick="myFunction2()" id="right">---Right---</button>
   <button onclick="myFunction5()" id="leftleft" style="display:none;">Eat the honey since you are starving</button>
@@ -22,15 +23,14 @@
   <input id = "form" style="display:none;"></input>
   <button onclick="formTwo()" id="formTwo" style="display:none;">Enter</button>
   <br><br>
-
 </div>
 
 <script>
 
 // This goes left (correct door) onclick removes left/right and replaces it with a new left/right so I can apply new createTextNode to them for next scene into ul. display=none for the form so it doesnt show up during first scene.
 function myFunction1() {
-  var textnode = document.createTextNode("There is a bear in here. It's sitting in front of another door eating from a pot of honey. How are you going to move the bear?");
-  var item = document.getElementById("myList").childNodes[1];
+    var textnode = document.createTextNode("There is a bear in here. It's sitting in front of another door eating from a pot of honey. How are you going to move the bear?");
+   var item = document.getElementById("myList").childNodes[1];
   item.replaceChild(textnode, item.childNodes[0]);
   document.getElementById("left").style.display = "none";
   document.getElementById("right").style.display = "none";
@@ -43,8 +43,8 @@ function myFunction1() {
 
 // Right Door (wrong door) display=none for buttons and form/button replace current ul with new "dialogue"
 function myFunction2() {
-  var textnode = document.createTextNode("The door swings open to utter darkness. You step through, but your foot can't find the floor. It's a big pit. And you're falling. AAAAAAAAHHHHHHHHHhhhhhhhhhhhh.....    You Died. Click Restart to try again.");
-  var item = document.getElementById("myList").childNodes[1];
+    var textnode = document.createTextNode("The door swings open to utter darkness. You step through, but your foot can't find the floor. It's a big pit. And you're falling. AAAAAAAAHHHHHHHHHhhhhhhhhhhhh.....    You Died. Click Restart to try again.");
+   var item = document.getElementById("myList").childNodes[1];
   item.replaceChild(textnode, item.childNodes[0]);
   document.getElementById("left").style.display = "none";
   document.getElementById("right").style.display = "none";
@@ -54,8 +54,8 @@ function myFunction2() {
 
 // since function5 or "leftleft" is displayed inline-block it shows in place of the previous button set. display=none for old buttons and form/form button
 function myFunction5() {
-  var textnode = document.createTextNode("Bad call. The angry bear slaps your face off. You Die Instantly. -- Press Restart to try again");
-  var item = document.getElementById("myList").childNodes[1];
+    var textnode = document.createTextNode("Bad call. The angry bear slaps your face off. You Die Instantly. -- Press Restart to try again");
+   var item = document.getElementById("myList").childNodes[1];
   item.replaceChild(textnode, item.childNodes[0]);
   document.getElementById("leftleft").style.display = "none";
   document.getElementById("leftright").style.display = "none";
@@ -65,8 +65,8 @@ function myFunction5() {
 
 // (right) leftright is the correct choice so I display new dialogue and disable the buttons and add a form and formTwo (enter button)
 function myFunction6() {
-  var textnode = document.createTextNode("The bear moved, and you enter the door to find yourself standing amidst a room full of treasure. How much do you take?");
-  var item = document.getElementById("myList").childNodes[1];
+    var textnode = document.createTextNode("The bear moved, and you enter the door to find yourself standing amidst a room full of treasure. How much do you take?");
+   var item = document.getElementById("myList").childNodes[1];
   item.replaceChild(textnode, item.childNodes[0]);
   document.getElementById("leftleft").style.display = "none";
   document.getElementById("leftright").style.display = "none";
@@ -76,8 +76,8 @@ function myFunction6() {
 
 // Restart function -- after death text it asks you to click restart. Re-enables the first buttons and disables previous new buttons/form. after var item there is clearTimeout event to clear the timer after clicking.
 function myFunction4() {
-  var textnode = document.createTextNode("-- You awake in a dimly lit room. -- -- There are doors to your left and right. -- -- Which door do you pick? --");
-  var item = document.getElementById("myList").childNodes[1];
+    var textnode = document.createTextNode("-- You awake in a dimly lit room. -- -- There are doors to your left and right. -- -- Which door do you pick? --");
+   var item = document.getElementById("myList").childNodes[1];
   item.replaceChild(textnode, item.childNodes[0]);
 
   document.getElementById("left").style.display = "inline-block";
@@ -90,10 +90,10 @@ function myFunction4() {
 
 // Start function -- starts the game. formTwo or the enter button refused to not show up here no matter what i did so i displayed none for it here.
 function myFunction() {
-  var textnode = document.createTextNode("-- You awake in a dimly lit room. -- -- There are doors to your left and right. -- -- Which door do you pick? --");
+    var textnode = document.createTextNode("-- You awake in a dimly lit room. -- -- There are doors to your left and right. -- -- Which door do you pick? --");
   var item = document.getElementById("myList").childNodes[1];
   item.replaceChild(textnode, item.childNodes[0]);
-  document.getElementById("formTwo").style.display = "none";
+    document.getElementById("formTwo").style.display = "none";
 }
 
     // this is the timer. { clearTimeout(timer); } was above inside the restart function var timer; timer = setTimeout(function(){ alert("You Have Failed. Please Click Restart"); }, 120000); but this was breaking the code when pressing restart.
@@ -103,16 +103,13 @@ function myFunction() {
 // This is my failed attempt at making the js recognize what number was being entered then changing the text depending on it was the right or wrong answer.
 function formTwo() {
   const choice = document.getElementById("formTwo").value;
-  if(Number(choice)) {
-
-  }
+  if(Number(choice))
 
   if (choice > 100) {
      let textnode = document.createTextNode("newtext");
-     var item = document.getElementById("myList").childNodes[1];
-     item.replaceChild(textnode, item.childNodes[0]);
-     document.getElementById("formTwo").style.display = "none";
-   }
+  var item = document.getElementById("myList").childNodes[1];
+  item.replaceChild(textnode, item.childNodes[0]);
+    document.getElementById("formTwo").style.display = "none"; }
 }
 
 </script>
