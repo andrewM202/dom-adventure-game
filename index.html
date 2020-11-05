@@ -4,25 +4,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>repl.it</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/style.css" type="text/css" />
   </head>
 <body>
 
-<br><br> <button onclick="myFunction()">-->Start<--</button> <br><br>
+<div>
+  <button onclick="myFunction()">--Start--</button>
+  <button onclick="myFunction4()" id="restart">Restart</button>
 
-<ul id="myList">
-  <li>
-  </li> <br> 
+  <ul id="myList">
+    <li>
+    </li> <br>
 
-<button onclick="myFunction1()" id="left">----Left----</button>
-<button onclick="myFunction2()" id="right">---Right---</button>
-<button onclick="myFunction5()" id="leftleft" style="display:none;">Eat the honey since you are starving</button>
-<button onclick="myFunction6()" id="leftright" style="display:none;">Kick The Bear In The Head</button> 
-<input id = "form" style="display:none;"></input>
-<button onclick="formTwo()" id="formTwo" style="display:none;">Enter</button>
-<br><br>
-<button onclick="myFunction4()" id="restart">Restart</button> 
-
+  <button onclick="myFunction1()" id="left">----Left----</button>
+  <button onclick="myFunction2()" id="right">---Right---</button>
+  <button onclick="myFunction5()" id="leftleft" style="display:none;">Eat the honey since you are starving</button>
+  <button onclick="myFunction6()" id="leftright" style="display:none;">Kick The Bear In The Head</button>
+  <input id = "form" style="display:none;"></input>
+  <button onclick="formTwo()" id="formTwo" style="display:none;">Enter</button>
+  <br><br>
+<div>
 
 <script>
 
@@ -78,7 +79,7 @@ function myFunction4() {
     var textnode = document.createTextNode("-- You awake in a dimly lit room. -- -- There are doors to your left and right. -- -- Which door do you pick? --");
    var item = document.getElementById("myList").childNodes[1];
   item.replaceChild(textnode, item.childNodes[0]);
-  
+
   document.getElementById("left").style.display = "inline-block";
   document.getElementById("right").style.display = "inline-block";
   document.getElementById("leftleft").style.display = "none";
